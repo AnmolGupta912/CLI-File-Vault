@@ -33,16 +33,16 @@ function Initialize_vault(){
 
 // Initialize_vault()
 
-const source_file = "/home/anmol-gupta/Documents/Programs/Personal projects/Vault/package-lock.json" // giving abs path
-// console.log(is_dir_exist(source_file))
-// 
-// fs.copyFile(source_file, STORE_DIR, (err) => {
-        // if (err) {
-            // return console.error('Failed to copy file', err);
-        // }
-        // console.log('File copied successfully!');
-    // })
-
-
-
+function store_files(src_file){
+    const source_file = src_file || "/home/anmol-gupta/Documents/Programs/Personal projects/CLI File Vault/package-lock.json" // giving abs path
+    
+    const filename = path.basename(source_file)
+    const full_dest_path = path.join(STORE_DIR, filename)
+    
+    try{
+        fs.copyFileSync(source_file, full_dest_path)
+    }catch (error){
+        console.error('Error occurred while copying file:', error);
+    }
+}
 
