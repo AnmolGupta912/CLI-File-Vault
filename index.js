@@ -2,6 +2,10 @@
 import fs from "fs"
 import path from "path"
 
+
+import { formatBytes } from "./helper.js";
+
+
 const currentDir = process.cwd();
 const STORE_DIR = `${currentDir}/Vault`
 
@@ -31,8 +35,7 @@ function Initialize_vault(){
     }
 }
 
-// Initialize_vault()
-
+// store copy of file
 function store_files(src_file){ // cant work with any dir
     const source_file = src_file || "/home/anmol-gupta/Documents/Programs/Personal projects/CLI File Vault/package-lock.json" // giving abs path
     
@@ -46,7 +49,7 @@ function store_files(src_file){ // cant work with any dir
     }
 }
 
-// store_files("tast ")
+// display all files in Vault
 function list_all_file(){
     return fs.readdirSync(STORE_DIR);
 }
@@ -62,4 +65,47 @@ function display_files(){
     console.log("\nTotal files: ", files.length)
 }
 
-display_files()
+
+// get file infomation 
+function file_stats(file){
+    let stats = fs.statSync(file, (err, stat) => {
+        if (err) {
+            console.error(err)
+            return;
+        }
+
+        return stat
+    })
+
+    stats = [
+        {
+            "size": formatBytes(stats.size)
+        },
+        {
+            "last modified": stats.mtime
+        },
+        {
+            "birthtime": stats.birthtime
+        },
+        {
+            "isFile": stats.isFile()
+        },
+        {
+            "isDirectory": stats.isDirectory()
+        }
+    ]
+
+    stats.forEach((stat, index) => {
+        for (const key in stat) {
+            if (!Object.hasOwn(stat, key)) continue;
+            
+            const element = stat[key];
+
+            console.log(`${index + 1}. ${key} : ${element}`)
+        }
+    });
+}
+
+
+
+file_stats("/home/anmol-gupta/Documents/Programs/Personal projects/CLI File Vault/example.txt")
