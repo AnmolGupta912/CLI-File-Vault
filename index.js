@@ -33,7 +33,7 @@ function Initialize_vault(){
 
 // Initialize_vault()
 
-function store_files(src_file){
+function store_files(src_file){ // cant work with any dir
     const source_file = src_file || "/home/anmol-gupta/Documents/Programs/Personal projects/CLI File Vault/package-lock.json" // giving abs path
     
     const filename = path.basename(source_file)
@@ -46,3 +46,20 @@ function store_files(src_file){
     }
 }
 
+// store_files("tast ")
+function list_all_file(){
+    return fs.readdirSync(STORE_DIR);
+}
+
+function display_files(){
+    const files = list_all_file() // ["", ""]
+
+    console.log(`Files inside ${path.basename(STORE_DIR)}\n`)
+    
+    files.forEach((file, i) => {
+        console.log(i + 1, file)
+    })
+    console.log("\nTotal files: ", files.length)
+}
+
+display_files()
