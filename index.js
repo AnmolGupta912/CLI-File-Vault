@@ -121,4 +121,18 @@ function renameFile(oldName, newName){
     }
 }
 
-renameFile("nana.txt", "poem.txt")
+// renameFile("nana.txt", "poem.txt")
+
+function deleteFile(fileName){
+    const fullPath = path.join(process.cwd(), fileName)
+
+    try{
+        fs.unlinkSync(fullPath)
+        console.log("File delete sucessfully!!!")
+    }catch (error){
+        console.log("ERR: ", error.message)
+    }
+    
+}
+
+deleteFile("delete.txt")
