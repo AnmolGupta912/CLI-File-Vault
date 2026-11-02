@@ -108,4 +108,17 @@ function file_stats(file){
 
 
 
-file_stats("/home/anmol-gupta/Documents/Programs/Personal projects/CLI File Vault/example.txt")
+
+function renameFile(oldName, newName){
+    const oldPath = path.join(process.cwd(), oldName)
+    const newPath = path.join(process.cwd(), newName)
+
+    try{
+        fs.renameSync(oldPath, newPath)
+        console.log("file renamed successfully!!!")
+    }catch (error){
+        console.log("ERR: ", error.message)
+    }
+}
+
+renameFile("nana.txt", "poem.txt")
