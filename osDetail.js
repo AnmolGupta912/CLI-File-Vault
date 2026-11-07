@@ -1,6 +1,9 @@
 import os from "os"
 import { execSync } from "child_process"
+
+
 import { formatBytes } from "./helper.js";
+import { formatUptime } from "./helper.js";
 
 
 function getPhysicalCores(){
@@ -86,10 +89,13 @@ function getMechineInfo(){
 
 // getMechineInfo()
 // todo: what is uptime 
-// function getSystemUptime(){
-//     console.log(os.uptime())
-// }
-
+function getSystemUptime(){
+    console.log("System Uptime\n-------------\n")
+    const uptime = formatUptime(os.uptime())
+  
+    console.log(uptime)
+}
+getSystemUptime()
 
 
 // Network infomation 
@@ -110,4 +116,4 @@ function getNetworkInfo(){
     }
 }
 
-getNetworkInfo()
+// getNetworkInfo()
