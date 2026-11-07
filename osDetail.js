@@ -42,6 +42,7 @@ function cpuInfo(){
     }
 }
 
+// Memory Information 
 function getMemoryInfo(){
     const total = os.totalmem()
     const free = os.freemem()
@@ -59,9 +60,54 @@ function getMemoryInfo(){
     for (const key in memoryInfo){
         console.log(
             `${key.charAt(0).toUpperCase() + key.slice(1)}: ${ key != "useage" ? formatBytes(memoryInfo[key]) : `${memoryInfo[key]}%` }`
-            // console.
         )
     }
 }
 
-getMemoryInfo()
+// Mechine Infomation
+function getMechineInfo(){
+    console.log("Machine Information\n-------------------\n")
+
+    const username = os.userInfo().username
+    const home =   os.homedir()
+    const hostname = os.hostname()
+    const tmp = os.tmpdir()
+
+    const obj = {
+        username,
+        home,
+        hostname,
+        "Temp Directory": tmp
+    }
+    for (const key in obj){
+        console.log(`${key.charAt(0).toUpperCase() + key.slice(1)}: ${obj[key]}`)
+    }
+}
+
+// getMechineInfo()
+// todo: what is uptime 
+// function getSystemUptime(){
+//     console.log(os.uptime())
+// }
+
+
+
+// Network infomation 
+function getNetworkInfo(){
+    console.log("Network Interfaces\n------------------\n")
+
+    const networks = os.networkInterfaces()
+
+    for (const key in networks){
+        const networkName = key;
+        const networkArray = networks[key]
+        
+        console.log(`Interfaces: ${networkName}`)
+        networkArray.forEach((obj, i) => {
+            console.log(`${obj["family"]}: ${obj["address"]}`)
+        })
+        console.log("\n")
+    }
+}
+
+getNetworkInfo()
