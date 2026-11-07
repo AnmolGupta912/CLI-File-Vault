@@ -1,5 +1,7 @@
 import os from "os"
 import { execSync } from "child_process"
+import { formatBytes } from "./helper.js";
+
 
 function getPhysicalCores(){
     // TODO: all for all platforms
@@ -14,6 +16,7 @@ function getPhysicalCores(){
     }
 }
 
+// Operating System Details
 function osDetails(){
     console.log("System Information\n------------------\n")
     console.log("OS: ",os.type())
@@ -22,10 +25,10 @@ function osDetails(){
     console.log("Release: ", os.release())
 }
 
-
+// CPU Information
 function cpuInfo(){
     const userCpus = os.cpus()
-    
+
     const cpuInfoObj = {
         "model": userCpus[0].model,
         "speed": userCpus[0].speed,
@@ -39,4 +42,26 @@ function cpuInfo(){
     }
 }
 
-cpuInfo()
+function getMemoryInfo(){
+    const total = os.totalmem()
+    const free = os.freemem()
+    const used = os.totalmem() - os.freemem()
+    const useage = Math.floor((used/total)*100) // TODO: should show atleast 2 digit after point
+
+    const memoryInfo = {
+        "total": total,
+        "free": free,
+        "used": used,
+        "useage": useage
+    }
+
+    console.log("Memory Information\n------------------\n")
+    for (const key in memoryInfo){
+        console.log(
+            `${key.charAt(0).toUpperCase() + key.slice(1)}: ${ key != "useage" ? formatBytes(memoryInfo[key]) : `${memoryInfo[key]}%` }`
+            // console.
+        )
+    }
+}
+
+getMemoryInfo()
