@@ -19,6 +19,7 @@ function getPhysicalCores(){
     }
 }
 
+
 // Operating System Details
 function osDetails(){
     console.log("System Information\n------------------\n")
@@ -27,6 +28,7 @@ function osDetails(){
     console.log("Architecture: ",os.arch())
     console.log("Release: ", os.release())
 }
+
 
 // CPU Information
 function cpuInfo(){
@@ -44,6 +46,7 @@ function cpuInfo(){
         console.log(`${key.charAt(0).toUpperCase() + key.slice(1)}: ${cpuInfoObj[key]}`)
     }
 }
+
 
 // Memory Information 
 function getMemoryInfo(){
@@ -67,6 +70,7 @@ function getMemoryInfo(){
     }
 }
 
+
 // Mechine Infomation
 function getMechineInfo(){
     console.log("Machine Information\n-------------------\n")
@@ -87,6 +91,7 @@ function getMechineInfo(){
     }
 }
 
+
 // getMechineInfo()
 // todo: what is uptime 
 function getSystemUptime(){
@@ -95,7 +100,6 @@ function getSystemUptime(){
   
     console.log(uptime)
 }
-getSystemUptime()
 
 
 // Network infomation 
@@ -115,5 +119,3 @@ function getNetworkInfo(){
         console.log("\n")
     }
 }
-
-// getNetworkInfo()

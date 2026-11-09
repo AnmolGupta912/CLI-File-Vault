@@ -13,8 +13,7 @@ export function formatBytes(bytes, decimals = 2) {
 
 export function formatUptime(seconds) {
   const d = Math.floor(seconds / (3600 * 24));
-  // const h = Math.floor((seconds % (3600 * 24)) / 3600);
-  const h = Math.floor(seconds/(60*60*24))
+  const h = Math.floor((seconds % (3600 * 24)) / 3600);
   const m = Math.floor((seconds % 3600) / 60);
   const s = Math.floor(seconds % 60);
 
