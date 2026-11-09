@@ -1,4 +1,10 @@
-
+import {
+    store,
+    list,
+    rename,
+    delete_file_cmd,
+    stats
+} from "./fileCommand/index.js"
 
 
 const operation = process.argv[2];
@@ -10,25 +16,25 @@ if (total_operation.includes(operation)){
 
     switch (operation){
         case "store":
-            // call the store funstion 
+            store()
             break;
         
         case "list":
-            //
+            list()
             break
         
         case "stats":
+            stats()
             break
-        
-        case "display":
-            break
-        
+
 
         case "rename":
+            rename()
             break
         
 
         case "delete":
+            delete_file_cmd()
             break
 
         default:
