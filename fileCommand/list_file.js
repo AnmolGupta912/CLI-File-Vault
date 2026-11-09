@@ -1,6 +1,6 @@
 import {display_files} from "../fs.js"
 
 
-export function display(){
+export function list(){
     display_files()
 }
