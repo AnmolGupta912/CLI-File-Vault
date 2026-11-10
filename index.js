@@ -1,20 +1,27 @@
+#!/usr/bin/env node
+
 import {
     store,
     list,
     rename,
     delete_file_cmd,
-    stats
+    stats,
+    init,
+    help
 } from "./fileCommand/index.js"
 
 
 const operation = process.argv[2];
 
-const total_operation = ["store", "list", "stats", "display", "rename", "delete"]
+const total_operation = ["store", "list", "stats", "display", "rename", "delete", "init", "help"]
 
 if (total_operation.includes(operation)){
-    console.log(operation)
 
     switch (operation){
+        case "init":
+            init()
+            break
+
         case "store":
             store()
             break;
@@ -37,14 +44,14 @@ if (total_operation.includes(operation)){
             delete_file_cmd()
             break
 
+        case "help":
+            help()
+            break
+            
         default:
-            // this will not run 
+            // help()
             break
     }
-
-
-
 }else {
-    console.log(operation)
-    console.log("Unclear operation...")
+    help()
 }

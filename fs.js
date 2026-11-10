@@ -19,7 +19,7 @@ function make_dir(){
     console.log("Creating Vault...")
     const path = `${currentDir}/Vault`
 
-    fs.mkdir(path, { recursive: true }, (err) => {
+    fs.mkdirSync(path, { recursive: true }, (err) => {
         if (err) {
             return console.error('Failed to create directory:', err);
         }
@@ -28,7 +28,8 @@ function make_dir(){
 }
 
 
-function Initialize_vault(){
+// initialize a vault folder
+export function initialize_vault(){
     if (!is_dir_exist(STORE_DIR)) {
         make_dir()
     }
@@ -37,7 +38,8 @@ function Initialize_vault(){
 
 // store copy of file
 export function store_files(src_file){ // cant work with any dir
-    const source_file = src_file || "/home/anmol-gupta/Documents/Programs/Personal projects/CLI File Vault/package-lock.json" // giving abs path
+    initialize_vault()
+    const source_file = src_file || "/home/anmol-gupta/Documents/Programs/Personal projects/CLI File Vault/" // giving abs path
     
     const filename = path.basename(source_file)
     const full_dest_path = path.join(STORE_DIR, filename)
@@ -58,7 +60,7 @@ function list_all_file(){
 }
 
 export function display_files(){
-    const files = list_all_file() // ["", ""]
+    const files = list_all_file() 
 
     console.log(`Files inside ${path.basename(STORE_DIR)}\n`)
     
