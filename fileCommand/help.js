@@ -1,11 +1,14 @@
 export function help(){
     console.log(`
-        use vault store <file.name>
-        use vault list 
-        use vault stats <file.name>
-        use vault rename <oldName> <newName>
-        use vault delete <file.name>
+Use these command to copy file to vault, rename file, delete file, get stats, more coming on line :)...
 
-        Help using Vault
+vault init
+vault store <file.name>
+vault list 
+vault stats <file.name>
+vault rename <oldName> <newName>
+vault delete <file.name>
+
+Help using Vault...
         `)
 }
